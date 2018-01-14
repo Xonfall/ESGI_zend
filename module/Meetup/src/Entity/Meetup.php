@@ -30,15 +30,45 @@ class Meetup
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=2000, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $description = '';
 
-    public function __construct(string $title, string $description = '')
+    /**
+     * @ORM\Column(type="string", nullable=false)
+     */
+    private $startAt;
+
+    /**
+     * @ORM\Column(type="string", nullable=false)
+     */
+    private $endAt;
+
+
+
+    public function __construct(string $title, string $description = '', $startAt, $endAt)
     {
         $this->id = Uuid::uuid4()->toString();
         $this->title = $title;
         $this->description = $description;
+        $this->startAt = $startAt;
+        $this->endAt = $endAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id) : void
+    {
+        $this->id = $id;
     }
 
     /**
@@ -49,13 +79,76 @@ class Meetup
         return $this->title;
     }
 
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title) : void
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
     public function getDescription() : string
     {
         return $this->description;
     }
 
+    /**
+     * @param string $description
+     * @return void
+     */
     public function setDescription(string $description) : void
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStartAt()
+    {
+        return $this->startAt;
+    }
+
+    /**
+     * @param mixed $startAt
+     */
+    public function setStartAt($startAt) : void
+    {
+        $this->startAt = $startAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEndAt()
+    {
+        return $this->endAt;
+    }
+
+    /**
+     * @param mixed $endAt
+     */
+    public function setEndAt($endAt) : void
+    {
+        $this->endAt = $endAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrganisationId()
+    {
+        return $this->organisation_id;
+    }
+
+    /**
+     * @param mixed $organisation_id
+     */
+    public function setOrganisationId($organisation_id)
+    {
+        $this->organisation_id = $organisation_id;
     }
 }

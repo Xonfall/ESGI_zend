@@ -5,9 +5,10 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Meetup\Controller;
+use Meetup\Controller\IndexControllerFactory;
+use Meetup\Form\MeetupForm;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
@@ -15,39 +16,73 @@ use Zend\ServiceManager\Factory\InvokableFactory;
 return [
     'router' => [
         'routes' => [
-            'home' => [
+            'meetup_home' => [
                 'type' => Literal::class,
                 'options' => [
-                    'route'    => '/meetup/',
+                    'route'    => '/meetup',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',
                     ],
                 ],
-            ],
-            /*'meetup' => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/meetup/:id',
-                    'defaults' => [
-                        'controller' => Controller\IndexController::class,
-                        'action'     => 'show',
+                'may_terminate' => true,
+                'child_routes' => [
+                    'add' => [
+                        'type' => Literal::class,
+                        'options' => [
+                            'route'    => '/add',
+                            'defaults' => [
+                                'action'     => 'add',
+                            ],
+                        ],
                     ],
-                    'constraints' => [
-                        'id' => '',
+                    'delete' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route'    => '/delete/:id',
+                            'defaults' => [
+                                'action'     => 'delete',
+                            ],
+                        ],
+                    ],
+                    'show' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route'    => '/show/:id',
+                            'defaults' => [
+                                'action'     => 'show',
+                            ],
+                        ],
+                    ],
+                    'edit' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route'    => '/edit/:id',
+                            'defaults' => [
+                                'action'     => 'edit',
+                            ],
+                        ],
                     ],
                 ],
-            ],*/
+            ],
         ],
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            Controller\IndexController::class => IndexControllerFactory::class,
+        ],
+    ],
+    'service_manager' => [
+        'factories' => [
+            MeetupForm::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [
         'template_map' => [
-            'meetup/index/index' => __DIR__ . './../view/meetup/index/index.phtml',
+            'meetup/index/index'    => __DIR__ . './../view/meetup/index.phtml',
+            'meetup/index/add'      => __DIR__ . './../view/meetup/add.phtml',
+            'meetup/index/edit'     => __DIR__ . './../view/meetup/edit.phtml',
+            'meetup/index/show'     => __DIR__ . './../view/meetup/show.phtml',
         ],
     ],
     'doctrine' => [

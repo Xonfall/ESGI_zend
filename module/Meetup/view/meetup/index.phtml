@@ -1,0 +1,25 @@
+<h1>Meetup</h1>
+
+<table class="table table-bordered">
+    <?php foreach ($this->meetups as $meetup): /* @var $meetup \Meetup\Entity\Meetup */ ?>
+        <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Action Show</th>
+            <th>Action Edit</th>
+            <th>Action Delete</th>
+        </tr>
+        <tr>
+            <td><?= $meetup->getTitle() ?></td>
+            <td><?= $meetup->getDescription() ?></td>
+            <td><?= $meetup->getStartAt() ?></td>
+            <td><?= $meetup->getEndAt() ?></td>
+            <td><a href="<?= $this->url('meetup_home/show', ['id' => $meetup->getId()]); ?>" class="btn btn-primary">Show</a></td>
+            <td><a href="<?= $this->url('meetup_home/edit', ['id' => $meetup->getId()]); ?>" class="btn btn-primary">Edit</a></td>
+            <td><a href="<?= $this->url('meetup_home/delete', ['id' => $meetup->getId()]); ?>" onclick="alert('Attention suppression !')" class="btn btn-primary">Delete</a></td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+<a href="<?= $this->url('meetup_home/add'); ?>" class="btn btn-primary">Add new</a>

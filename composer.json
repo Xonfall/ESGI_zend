@@ -17,17 +17,22 @@
         "zendframework/zend-mvc": "^3.0.1",
         "zfcampus/zf-development-mode": "^3.0",
         "doctrine/doctrine-orm-module": "^1.1",
-        "ramsey/uuid": "^3.7"
+        "ramsey/uuid": "^3.7",
+        "zendframework/zend-form": "^2.11",
+        "zendframework/zend-inputfilter": "^2.8",
+        "zendframework/zend-i18n": "^2.7"
     },
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
-            "Meetup\\": "module/Meetup/src/"
+            "Meetup\\": "module/Meetup/src/",
+            "Participant\\": "module/Participant/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "module/Application/test/"
+            "ApplicationTest\\": "module/Application/test/",
+            "MeetupTest\\": "module/Meetup/test/"
         }
     },
     "extra": [],

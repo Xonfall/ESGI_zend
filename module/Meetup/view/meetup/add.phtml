@@ -1,0 +1,21 @@
+<h1>Bonjour</h1>
+
+
+<?php
+/* @var $form \Zend\Form\Form */
+$form = $this->form;
+?>
+
+<?= $this->form()->openTag($form); ?>
+
+<?= $this->formRow($form->get('title')) ?>
+
+<?= $this->formRow($form->get('description')) ?>
+
+<?= $this->formRow($form->get('debut')) ?>
+
+<?= $this->formRow($form->get('fin')) ?>
+
+<?= $this->formInput($form->get('submit')) ?>
+
+<?= $this->form()->closeTag($form); ?>

@@ -1,0 +1,20 @@
+<h1>Meetup</h1>
+<?php
+$this->meetup /* @var $meetup \Meetup\Entity\Meetup */
+?>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Date de début</th>
+        <th>Date de fin</th>
+    </tr>
+    <tr>
+        <td><?= $meetup->getTitle() ?></td>
+        <td><?= $meetup->getDescription() ?></td>
+        <td><?= $meetup->getStartAt() ?></td>
+        <td><?= $meetup->getEndAt() ?></td>
+    </tr>
+</table>
+<td><a href="<?= $this->url('meetup_home'); ?>" class="btn btn-primary">Home</a></td>
