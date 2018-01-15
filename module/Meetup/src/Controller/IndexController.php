@@ -78,7 +78,8 @@ class IndexController extends AbstractActionController
         /* @var $request Request */
         $request = $this->getRequest();
 
-        if ($request->isPost()) {
+        if ($request->isPost())
+        {
             $data = $this->params()->fromPost();
             $form->setData($data);
             if ($form->isValid())
@@ -90,7 +91,7 @@ class IndexController extends AbstractActionController
                 $meetup->setStartAt($data['debut']);
                 $meetup->setEndAt($data['fin']);
 
-                $this->meetupRepository->updateMeetup($data);
+                $this->meetupRepository->updateMeetup();
 
                 return $this->redirect()->toRoute('meetup_home');
             }
@@ -104,8 +105,6 @@ class IndexController extends AbstractActionController
 
                 $form->setData($data);
         }
-
-        //$form->prepare();
 
         return new ViewModel([
             'form' => $form,

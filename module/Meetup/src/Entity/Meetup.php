@@ -44,8 +44,6 @@ class Meetup
      */
     private $endAt;
 
-
-
     public function __construct(string $title, string $description = '', $startAt, $endAt)
     {
         $this->id = Uuid::uuid4()->toString();
@@ -134,21 +132,5 @@ class Meetup
     public function setEndAt($endAt) : void
     {
         $this->endAt = $endAt;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOrganisationId()
-    {
-        return $this->organisation_id;
-    }
-
-    /**
-     * @param mixed $organisation_id
-     */
-    public function setOrganisationId($organisation_id)
-    {
-        $this->organisation_id = $organisation_id;
     }
 }

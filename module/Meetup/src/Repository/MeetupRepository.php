@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Meetup\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use DoctrineORMModule\Service\DoctrineObjectHydratorFactory;
 use Meetup\Entity\Meetup;
 
 final class MeetupRepository extends EntityRepository
@@ -27,7 +26,7 @@ final class MeetupRepository extends EntityRepository
         $this->getEntityManager()->flush($meetup);
     }
 
-    public function updateMeetup($meetup) : void
+    public function updateMeetup() : void
     {
         $this->getEntityManager()->flush();
     }
